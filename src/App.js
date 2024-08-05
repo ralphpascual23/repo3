@@ -4,20 +4,21 @@ import Aside from './Aside';
 import Body from './Body';
 import './App.css';
 
-function App() {
-  const [watches, setWatches] = useState([]);
-  const [filteredWatches, setFilteredWatches] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+const initialWatches = [
+    { id: 1, brand: 'OMEGA', model: 'Speedmaster Chronograph', type: 'Chronograph', dial: 'Black', price: 2999.00 },
+    { id: 2, brand: 'TISSOT', model: 'PRX Powermatic 80', type: 'Automatic', dial: 'Blue', price: 599.00 },
+    { id: 3, brand: 'BREITLING', model: 'Chronomat GMT 40', type: 'Automatic', dial: 'Blue', price: 4199.00 },
+    { id: 4, brand: 'BREITLING', model: 'Classic AVI', type: 'Chronograph', dial: 'Black', price: 2999.00 },
+    { id: 5, brand: 'OMEGA', model: 'Speedmaster Racing Chronograph', type: 'Chronograph', dial: 'White', price: 999.00 },
+    { id: 6, brand: 'SEIKO', model: 'SSB425P1', type: 'Chronograph', dial: 'White', price: 499.00 },
+    { id: 7, brand: 'TISSOT', model: 'PRX', type: 'Quartz', dial: 'Blue', price: 399.00 },
+    { id: 8, brand: 'SEIKO', model: '5', type: 'Quartz', dial: 'Black', price: 199.00 } 
+];
 
-  useEffect(() => {
-    fetch('http://localhost:5000/watches')
-      .then(response => response.json())
-      .then(data => {
-        setWatches(data);
-        setFilteredWatches(data);
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+function App() {
+  const [watches, setWatches] = useState(initialWatches);
+  const [filteredWatches, setFilteredWatches] = useState(initialWatches);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (term) => {
     setSearchTerm(term);
@@ -81,3 +82,4 @@ function App() {
 }
 
 export default App;
+
